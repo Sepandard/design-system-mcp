@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Button",
+    "description": "Triggers an action or submits a form. Label is passed as projected content: <ds-button>Save</ds-button>.",
+    "category": "actions",
+    "props": [
+      { "name": "variant", "type": "'primary' | 'secondary' | 'danger' | 'ghost'", "required": false, "default": "'primary'", "description": "Visual style of the button (@Input)." },
+      { "name": "size", "type": "'sm' | 'md' | 'lg'", "required": false, "default": "'md'", "description": "Controls height and horizontal padding (@Input)." },
+      { "name": "disabled", "type": "boolean", "required": false, "default": "false", "description": "Prevents interaction and dims the button (@Input)." },
+      { "name": "loading", "type": "boolean", "required": false, "default": "false", "description": "Shows a spinner and blocks repeated clicks (@Input)." },
+      { "name": "type", "type": "'button' | 'submit' | 'reset'", "required": false, "default": "'button'", "description": "Native button type; use 'submit' inside forms (@Input)." },
+      { "name": "clicked", "type": "EventEmitter<MouseEvent>", "required": false, "description": "Emits when the button is clicked (@Output)." }
+    ],
+    "variants": ["primary", "secondary", "danger", "ghost"],
+    "tokensUsed": ["color.primary", "color.secondary", "color.danger", "spacing.md", "radius.md", "font.size.body"],
+    "example": "<ds-button variant=\"primary\" size=\"md\" (clicked)=\"save()\">Save</ds-button>",
+    "a11y": "Use a visible text label. If icon-only, set `aria-label`."
+  },
+  {
+    "name": "Input",
+    "description": "Single-line text field for collecting user input. Supports two-way binding with [(value)].",
+    "category": "forms",
+    "props": [
+      { "name": "value", "type": "string", "required": true, "description": "Current value of the field (@Input)." },
+      { "name": "valueChange", "type": "EventEmitter<string>", "required": false, "description": "Emits the new value when the user types; enables [(value)] two-way binding (@Output)." },
+      { "name": "label", "type": "string", "required": true, "description": "Visible label rendered above the field (@Input)." },
+      { "name": "placeholder", "type": "string", "required": false, "description": "Hint shown while the field is empty (@Input)." },
+      { "name": "type", "type": "'text' | 'email' | 'password' | 'number'", "required": false, "default": "'text'", "description": "Native input type (@Input)." },
+      { "name": "error", "type": "string", "required": false, "description": "Error message; also switches the field to the error style (@Input)." },
+      { "name": "disabled", "type": "boolean", "required": false, "default": "false", "description": "Prevents editing and dims the field (@Input)." }
+    ],
+    "variants": ["default", "error"],
+    "tokensUsed": ["color.surface", "color.text", "color.text-muted", "color.danger", "spacing.sm", "radius.sm", "font.size.body"],
+    "example": "<ds-input label=\"Email\" type=\"email\" [(value)]=\"email\" [error]=\"emailError\"></ds-input>",
+    "a11y": "Always provide `label`; do not rely on `placeholder` alone. Error messages are linked to the field with `aria-describedby`."
+  },
+  {
+    "name": "Card",
+    "description": "Container that groups related content on a raised surface. Body is projected content; actions go in an element with the `footer` attribute.",
+    "category": "layout",
+    "props": [
+      { "name": "title", "type": "string", "required": false, "description": "Optional heading shown at the top of the card (@Input)." },
+      { "name": "subtitle", "type": "string", "required": false, "description": "Optional secondary line under the title (@Input)." },
+      { "name": "padding", "type": "'sm' | 'md' | 'lg'", "required": false, "default": "'md'", "description": "Inner spacing of the card (@Input)." },
+      { "name": "elevated", "type": "boolean", "required": false, "default": "false", "description": "Adds a shadow instead of a flat border (@Input)." },
+      { "name": "bordered", "type": "boolean", "required": false, "default": "true", "description": "Draws a 1px border around the card (@Input)." }
+    ],
+    "variants": ["flat", "elevated"],
+    "tokensUsed": ["color.surface", "color.text", "spacing.md", "spacing.lg", "radius.md", "shadow.sm", "font.size.heading"],
+    "example": "<ds-card title=\"Billing\" [elevated]=\"true\">Next invoice on May 1.<div footer><ds-button>Update</ds-button></div></ds-card>",
+    "a11y": "A card is not interactive by itself. If the whole card is clickable, wrap it in a link or button rather than adding a click handler."
+  },
+  {
+    "name": "Badge",
+    "description": "Small label that shows a status or count. Text is passed as projected content.",
+    "category": "feedback",
+    "props": [
+      { "name": "tone", "type": "'neutral' | 'success' | 'warning' | 'danger'", "required": false, "default": "'neutral'", "description": "Color meaning of the badge (@Input)." },
+      { "name": "size", "type": "'sm' | 'md'", "required": false, "default": "'md'", "description": "Controls text size and padding (@Input)." },
+      { "name": "pill", "type": "boolean", "required": false, "default": "false", "description": "Uses fully rounded corners (@Input)." },
+      { "name": "dismissible", "type": "boolean", "required": false, "default": "false", "description": "Shows a close button on the badge (@Input)." },
+      { "name": "dismissed", "type": "EventEmitter<void>", "required": false, "description": "Emits when the close button is clicked (@Output)." }
+    ],
+    "variants": ["neutral", "success", "warning", "danger"],
+    "tokensUsed": ["color.secondary", "color.success", "color.warning", "color.danger", "spacing.xs", "radius.full", "font.size.small"],
+    "example": "<ds-badge tone=\"success\" [pill]=\"true\">Active</ds-badge>",
+    "a11y": "Do not convey status by color alone; the text must state the status. For live counts, wrap the badge in an element with `aria-live=\"polite\"`."
+  },
+  {
+    "name": "Modal",
+    "description": "Dialog that overlays the page and requires the user to respond. Body is projected content; actions go in an element with the `footer` attribute.",
+    "category": "overlay",
+    "props": [
+      { "name": "open", "type": "boolean", "required": true, "description": "Whether the modal is visible (@Input)." },
+      { "name": "closed", "type": "EventEmitter<void>", "required": false, "description": "Emits on Escape, backdrop click or the close button; the parent should set `open` to false (@Output)." },
+      { "name": "title", "type": "string", "required": true, "description": "Heading of the dialog, also used as its accessible name (@Input)." },
+      { "name": "size", "type": "'sm' | 'md' | 'lg'", "required": false, "default": "'md'", "description": "Maximum width of the dialog (@Input)." },
+      { "name": "closeOnBackdrop", "type": "boolean", "required": false, "default": "true", "description": "Whether clicking the backdrop closes the modal (@Input)." }
+    ],
+    "variants": ["sm", "md", "lg"],
+    "tokensUsed": ["color.surface", "color.text", "spacing.lg", "radius.md", "shadow.lg", "font.size.heading"],
+    "example": "<ds-modal [open]=\"open\" title=\"Delete project?\" (closed)=\"open = false\">This cannot be undone.<div footer><ds-button variant=\"danger\">Delete</ds-button></div></ds-modal>",
+    "a11y": "Focus moves into the dialog on open and is trapped until it closes, then returns to the trigger. Always provide `title` so the dialog has an accessible name."
+  }
+]
