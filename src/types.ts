@@ -5,6 +5,7 @@ export const COMPONENT_CATEGORIES = ["actions", "forms", "layout", "feedback", "
 
 const tokenSchema = z.object({ value: z.string(), description: z.string() });
 
+// Category -> (dot-separated token name -> token)
 export const tokensFileSchema = z.object(
   Object.fromEntries(TOKEN_CATEGORIES.map((c) => [c, z.record(z.string(), tokenSchema)])) as Record<
     (typeof TOKEN_CATEGORIES)[number],

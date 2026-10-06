@@ -29,23 +29,4 @@ Open the URL it prints, click **Connect**, then try the tools on the **Tools** t
 
 ## Connect to Claude Desktop / Cursor
 
-Use the absolute path to your clone. Add this to `claude_desktop_config.json` (Claude Desktop) or `.cursor/mcp.json` (Cursor), then restart the app:
-
-```json
-{
-  "mcpServers": {
-    "design-system-mcp": {
-      "command": "npx",
-      "args": ["tsx", "/ABSOLUTE/PATH/TO/design-system-mcp/src/index.ts"]
-    }
-  }
-}
-```
-
-## Tools
-
-| Tool | Input | Returns |
-|---|---|---|
-| `list_components` | `category?` | Name, description and category of each component |
-| `get_component` | `name` (case-insensitive) | Props, variants, tokens used, example and a11y notes |
-| `get_tokens` | `category?`, `prefix?` | Matching design tokens grouped by category |
+_To be filled in with the config snippet._
